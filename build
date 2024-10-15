@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ "$#" -ne 1 ] || [ "$1" == "--help" ]; then
+    cat << EOF
+Usage: $0 <path to Dockerfile>
+
+Builds an image using the Dockerfile at the specified path and tags the image 
+with the path. Do not include "Dockerfile" in the path.
+
+Examples:
+
+1) $0 clion/fedora/cpp-env # Builds a Fedora image for use with CLion
+2) $0 clion/emscripten
+EOF
+    if [ "$1" == "--help" ]; then
+        exit 0
+    fi
+
+    exit 1
+fi
+
+set -x
+
+docker build -t $1 $1
