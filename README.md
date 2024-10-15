@@ -17,6 +17,5 @@ The following Dockerfiles are available:
 | Path | Description |
 | --- | -- |
 | `clion/fedora/cpp-env` | Fedora environment for use with CLion |
-| `clion/fedora/kokkos-libMeshb` | Builds ontop of the Fedora environment and includes Kokkos and libMeshb |
-| `clion/fedora/pico-sdk` | Builds ontop of the Fedora environment and adds the pico-sdk and necessary tooling |
 | `clion/emscripten` | Builds ontop of the emscripten image and adds support for CLion |
+| `actions/core` | Environment for GitHub Actions |
