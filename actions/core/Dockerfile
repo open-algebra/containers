@@ -15,4 +15,4 @@ RUN dnf install -y make \
   python \
   git \
   valgrind \
-  llvm-18 \
+  llvm18 \
