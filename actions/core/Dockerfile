@@ -8,11 +8,11 @@ RUN dnf install -y make \
   gcc \
   gcc-c++ \
   gdb \
-  clang \
+  clang-18 \
   cmake \
   rsync \
   tar \
   python \
   git \
   valgrind \
-  llvm \
+  llvm-18 \
