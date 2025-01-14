@@ -9,6 +9,7 @@ RUN dnf install -y make \
   gcc-c++ \
   gdb \
   clang \
+  clang-tools-extra \
   cmake \
   rsync \
   tar \
