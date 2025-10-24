@@ -19,12 +19,20 @@ on:
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: open-algebra/gh-actions
 
 
 jobs:
   build:
+    # Build multiple images in parallel using a matrix of contexts
+    strategy:
+      matrix:
+        # Add an entry per image/context you want to build and publish.
+        # name is appended to IMAGE_NAME to form the final image name.
+        include:
+          - name: core
+            context: actions/core
+          - name: emscripten
+            context: clion/emscripten
 
     runs-on: ubuntu-latest
     permissions:
@@ -68,7 +76,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          # Use the matrix name to produce separate image names per job.
+          # Example: ghcr.io/open-algebra/gh-actions-core
+          images: ${{ env.REGISTRY }}/open-algebra/${{ matrix.name }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
@@ -76,7 +86,8 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
-          context: actions/core
+          # Build the specific context defined in the matrix for this job
+          context: ${{ matrix.context }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
