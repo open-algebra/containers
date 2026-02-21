@@ -1,8 +1,10 @@
-FROM emscripten/emsdk
+FROM emscripten/emsdk:5.0.0
 
 RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime \
     && DEBIAN_FRONTEND="noninteractive" apt-get update && apt-get -y install tzdata \
     && dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN curl -fsSL https://apt.kitware.com/kitware-archive.sh | sh
 
 RUN apt-get update \
     && apt-get install -y \
@@ -11,6 +13,7 @@ RUN apt-get update \
         g++ \
         gdb \
         clang \
+        cmake \
         make \
         ninja-build \
         cmake \

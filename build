@@ -21,4 +21,13 @@ fi
 
 set -x
 
-docker build -t $1 $1
+if command -v docker &> /dev/null; then
+    container_cmd="docker"
+elif command -v podman &> /dev/null; then
+    container_cmd="podman"
+else
+    echo "Neither docker nor podman is installed." >&2
+    exit 1
+fi
+
+$container_cmd build -t $1 $1
