@@ -19,8 +19,6 @@ EOF
     exit 1
 fi
 
-set -x
-
 if command -v docker &> /dev/null; then
     container_cmd="docker"
 elif command -v podman &> /dev/null; then
@@ -30,4 +28,5 @@ else
     exit 1
 fi
 
+set -x
 $container_cmd build -t $1 $1

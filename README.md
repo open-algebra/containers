@@ -8,7 +8,7 @@ with the path. Do not include "Dockerfile" in the path.
 
 Examples:
 
-1) ./build clion/fedora/cpp-env # Builds a Fedora image for use with CLion
+1) ./build actions/core # Builds a Fedora image for use with CLion
 2) ./build clion/emscripten
 ```
 
@@ -16,6 +16,5 @@ The following Dockerfiles are available:
 
 | Path | Description |
 | --- | -- |
-| `clion/fedora/cpp-env` | Fedora environment for use with CLion |
-| `clion/emscripten` | Builds ontop of the emscripten image and adds support for CLion |
+| `clion/emscripten` | Builds ontop of the Emscripten image and adds support for CLion |
 | `actions/core` | Environment for GitHub Actions |

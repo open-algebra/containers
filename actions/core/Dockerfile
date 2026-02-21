@@ -1,6 +1,7 @@
-FROM fedora
+FROM quay.io/fedora/fedora-minimal
 
-RUN dnf install -y make \
+RUN dnf install -y \
+  make \
   autoconf \
   automake \
   dos2unix \
