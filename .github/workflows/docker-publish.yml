@@ -29,8 +29,8 @@ jobs:
         # Add an entry per image/context you want to build and publish.
         # name is appended to IMAGE_NAME to form the final image name.
         include:
-          - name: core
-            context: actions/core
+          - name: actions
+            context: actions
           - name: emscripten
             context: clion/emscripten
 
